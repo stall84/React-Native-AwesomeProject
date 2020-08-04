@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: 'grey'
+       
     },
     text: {
         color: 'white',
