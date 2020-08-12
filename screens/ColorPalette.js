@@ -9,10 +9,10 @@ import SolarizeBox from '../components/SolarizeBox';
 // Receiving color props from above Home.js
 // React Navigation requires you pull props from the 'home/parent' component by using
 // destructuring individual route.params from the route prop
-const ColorPallete = ({ route }) => {
+const ColorPalette = ({ route }) => {
 
   // destructure individual props out of route params
-const { palleteName, colors } = route.params;
+const { paletteName, colors } = route.params;
 
 
     return (
@@ -28,7 +28,7 @@ const { palleteName, colors } = route.params;
                             colorName={item.colorName} 
                             colorHex={item.hexCode} 
                             />}
-                ListHeaderComponent={<Text style={styles.heading} >{palleteName}</Text>}
+                ListHeaderComponent={<Text style={styles.heading} >{paletteName}</Text>}
             />
             
 
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
     
   })
 
-export default ColorPallete; 
+export default ColorPalette; 
