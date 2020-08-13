@@ -1,14 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
-// Create an array to hold the 3 different palltetes we're going to make touchable to
-// from home screen. Later, below, We'll make a new flatlist to render them all out
-
-const COLOR_PALETTES = [
-    { paletteName: 'Solarized', colors: SOLARIZED },
-    { paletteName: 'Rainbow', colors: RAINBOW },
-    { paletteName: 'Frontend_Masters', colors: FRONTEND_MASTERS }
-]
 
 // Reformating we will put all of our color objects in Home, and pass them down
 // via Navigator's param-props
@@ -39,42 +31,45 @@ const RAINBOW = [
     { colorName: 'Violet', hexCode: '#8B00FF' },
   ];
 
-  const FRONTEND_MASTERS = [
+  
+const FRONTEND_MASTERS = [
     { colorName: 'Red', hexCode: '#c02d28' },
     { colorName: 'Black', hexCode: '#3e3e3e' },
     { colorName: 'Grey', hexCode: '#8a8a8a' },
     { colorName: 'White', hexCode: '#ffffff' },
     { colorName: 'Orange', hexCode: '#e66225' },
-  ];  
+  ];
+
+const COLOR_PALETTES = [
+    { paletteName: 'Solarized', colors: SOLARIZED },
+    { paletteName: 'Frontend Masters', colors: FRONTEND_MASTERS },
+    { paletteName: 'Rainbow', colors: RAINBOW },
+  ];
+
 
 const Home = ({ navigation }) => {
 
     return (
+        
+            <FlatList 
+            data={COLOR_PALETTES}
+            keyExtractor={item => item.paletteName}
+            renderItem={ ({ item }) => (
 
-      <FlatList 
-        data={COLOR_PALETTES}
-        keyExtractor={item => item.paletteName}
-        renderItem={({ item }) => (
-            
             <TouchableOpacity onPress={() => {
                 // First argument passed to navigation.navigate function is which component to navigate to, 
                 // following arguments specify what (if anything) you want to pass down with the navigation
                 // event (touch/press in this case). Here we pass down our color object data from above.
-                navigation.push('ColorPalette', {
-                    paletteName: item.paletteName,
-                    colors: item.colors
-                  });
+
+                navigation.navigate('ColorPallete', item);
             }}>
                 <Text style={{textAlign: 'center'}}>{item.paletteName}</Text>
             </TouchableOpacity>
-
+            )}
+        />
 
         )}
       
-      />
-
-      
-    )
-}
+)
 
 export default Home; 
