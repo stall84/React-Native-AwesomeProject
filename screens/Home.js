@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
+
 // Reformating we will put all of our color objects in Home, and pass them down
 // via Navigator's param-props
-
 const SOLARIZED = [
     { colorName: 'Base03', hexCode: '#002b36' },
     { colorName: 'Base02', hexCode: '#073642' },
@@ -30,6 +30,7 @@ const RAINBOW = [
     { colorName: 'Green', hexCode: '#00FF00' },
     { colorName: 'Violet', hexCode: '#8B00FF' },
   ];
+
   
 const FRONTEND_MASTERS = [
     { colorName: 'Red', hexCode: '#c02d28' },
@@ -45,6 +46,7 @@ const COLOR_PALETTES = [
     { paletteName: 'Rainbow', colors: RAINBOW },
   ];
 
+
 const Home = ({ navigation }) => {
 
     return (
@@ -53,17 +55,21 @@ const Home = ({ navigation }) => {
             data={COLOR_PALETTES}
             keyExtractor={item => item.paletteName}
             renderItem={ ({ item }) => (
+
             <TouchableOpacity onPress={() => {
                 // First argument passed to navigation.navigate function is which component to navigate to, 
                 // following arguments specify what (if anything) you want to pass down with the navigation
                 // event (touch/press in this case). Here we pass down our color object data from above.
+
                 navigation.navigate('ColorPallete', item);
             }}>
                 <Text style={{textAlign: 'center'}}>{item.paletteName}</Text>
             </TouchableOpacity>
             )}
         />
-    )
-}
+
+        )}
+      
+)
 
 export default Home; 
