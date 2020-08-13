@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-
+import { FlatList, StyleSheet } from 'react-native';
+import PalettePreview from '../components/PalettePreview';
 
 // Reformating we will put all of our color objects in Home, and pass them down
 // via Navigator's param-props
@@ -52,24 +52,27 @@ const Home = ({ navigation }) => {
     return (
         
             <FlatList 
+            style={styles.list}
             data={COLOR_PALETTES}
             keyExtractor={item => item.paletteName}
             renderItem={ ({ item }) => (
 
-            <TouchableOpacity onPress={() => {
-                // First argument passed to navigation.navigate function is which component to navigate to, 
-                // following arguments specify what (if anything) you want to pass down with the navigation
-                // event (touch/press in this case). Here we pass down our color object data from above.
-
-                navigation.navigate('ColorPalette', item);
-            }}>
-                <Text style={{textAlign: 'center'}}>{item.paletteName}</Text>
-            </TouchableOpacity>
+            <PalettePreview
+            handlePress={() => {
+              navigation.navigate('ColorPalette', item)
+            }}
+            colorPalette={item}
+            />
             )}
         />
 
         )}
       
-
+const styles = StyleSheet.create({
+  list: {
+    padding: 20,
+    backgroundColor: 'white',
+  }
+})
 
 export default Home; 

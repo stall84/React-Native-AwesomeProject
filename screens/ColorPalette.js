@@ -4,6 +4,7 @@ import SolarizeBox from '../components/SolarizeBox';
 
 
 
+
   
 
 // Receiving color props from above Home.js
@@ -18,7 +19,7 @@ const { paletteName, colors } = route.params;
     return (
 
     <SafeAreaView style={styles.safeArea}>
-      
+    
 
             <FlatList 
                 data={colors}
