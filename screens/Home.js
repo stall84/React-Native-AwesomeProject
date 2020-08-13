@@ -61,7 +61,7 @@ const Home = ({ navigation }) => {
                 // following arguments specify what (if anything) you want to pass down with the navigation
                 // event (touch/press in this case). Here we pass down our color object data from above.
 
-                navigation.navigate('ColorPallete', item);
+                navigation.navigate('ColorPalette', item);
             }}>
                 <Text style={{textAlign: 'center'}}>{item.paletteName}</Text>
             </TouchableOpacity>
@@ -70,6 +70,6 @@ const Home = ({ navigation }) => {
 
         )}
       
-)
+
 
 export default Home; 
