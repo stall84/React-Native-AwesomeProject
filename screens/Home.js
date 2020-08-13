@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
 // Reformating we will put all of our color objects in Home, and pass them down
 // via Navigator's param-props
@@ -23,19 +23,46 @@ const SOLARIZED = [
     { colorName: 'Green', hexCode: '#859900' },
   ];
 
+const RAINBOW = [
+    { colorName: 'Red', hexCode: '#FF0000' },
+    { colorName: 'Orange', hexCode: '#FF7F00' },
+    { colorName: 'Yellow', hexCode: '#FFFF00' },
+    { colorName: 'Green', hexCode: '#00FF00' },
+    { colorName: 'Violet', hexCode: '#8B00FF' },
+  ];
+  
+const FRONTEND_MASTERS = [
+    { colorName: 'Red', hexCode: '#c02d28' },
+    { colorName: 'Black', hexCode: '#3e3e3e' },
+    { colorName: 'Grey', hexCode: '#8a8a8a' },
+    { colorName: 'White', hexCode: '#ffffff' },
+    { colorName: 'Orange', hexCode: '#e66225' },
+  ];
+
+const COLOR_PALETTES = [
+    { paletteName: 'Solarized', colors: SOLARIZED },
+    { paletteName: 'Frontend Masters', colors: FRONTEND_MASTERS },
+    { paletteName: 'Rainbow', colors: RAINBOW },
+  ];
+
 const Home = ({ navigation }) => {
 
     return (
-        <View>
+        
+            <FlatList 
+            data={COLOR_PALETTES}
+            keyExtractor={item => item.paletteName}
+            renderItem={ ({ item }) => (
             <TouchableOpacity onPress={() => {
                 // First argument passed to navigation.navigate function is which component to navigate to, 
                 // following arguments specify what (if anything) you want to pass down with the navigation
                 // event (touch/press in this case). Here we pass down our color object data from above.
-                navigation.navigate('ColorPallete', { palleteName: 'Solarized', colors: SOLARIZED });
+                navigation.navigate('ColorPallete', item);
             }}>
-                <Text style={{textAlign: 'center'}}>SOLARIZED COLORS</Text>
+                <Text style={{textAlign: 'center'}}>{item.paletteName}</Text>
             </TouchableOpacity>
-        </View>
+            )}
+        />
     )
 }
 
