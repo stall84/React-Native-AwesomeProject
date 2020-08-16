@@ -10,13 +10,20 @@ const SolarizeBox = ({colorName, colorHex}) => {
         backgroundColor: colorHex,
         colorName: colorName
     }
+
+    const textColor = {
+        color: 
+            parseInt(colorHex.replace('#',''), 16) > 0xffffff / 1.1
+                ? 'black'
+                : 'white'
+    }
         
 
     return (
         // Still a little confused as to why merely 'boxStyle' gets called/passed instead of 'boxStyle.backgroundColor'
 
         <View style={[ styles.containerBox, boxStyle ]}>
-            <Text style={styles.text}>
+            <Text style={textColor}>
                 {boxStyle.colorName}
             </Text>
         </View>
@@ -40,9 +47,6 @@ const styles = StyleSheet.create({
         elevation: 2,
        
     },
-    text: {
-        color: 'white',
-    }
 });
 
 export default SolarizeBox;
