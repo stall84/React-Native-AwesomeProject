@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import PalettePreview from '../components/PalettePreview';
 
@@ -49,11 +49,35 @@ const COLOR_PALETTES = [
 
 const Home = ({ navigation }) => {
 
+    // Beginning to set up Hooks to fetch color palettes from web api
+
+      // First function establishes our state, and state updating function
+    const [colorPalettes, setPalettes] = useState([]);
+      // fetchPalettes function utilizes useCallback hook to define our API data retrieving mechanism.
+      // An empty array is the 2nd argument ensuring the function only gets called one time per load and not on 
+      // every single re-render, or potentially infinitely-loopy
+
+    const fetchPalettes = useCallback( async () => {
+      const response = await fetch('https://color-palette-api.kadikraman.now.sh/palettes')
+      if (!response.ok) {
+       throw Error(response.statusText)
+      } 
+        const paletteSelect = await response.json();
+        setPalettes(paletteSelect);
+    }, [])
+
+    // useEffect hook in this instance will call fetchPalettes hook only once upon rendering
+    // using the empty array 2nd argument to achieve this once-only instead of infinitely restriction.
+
+    useEffect(() => {
+      fetchPalettes()
+    }, [])
+
     return (
         
             <FlatList 
             style={styles.list}
-            data={COLOR_PALETTES}
+            data={colorPalettes}
             keyExtractor={item => item.paletteName}
             renderItem={ ({ item }) => (
 
