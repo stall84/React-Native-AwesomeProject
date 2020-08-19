@@ -5,16 +5,17 @@ const PalettePreview = ({ handlePress, colorPalette }) => {
 
 
     return (
-        <TouchableOpacity onPress={handlePress}>
-            <Text style={styles.text}>{colorPalette.paletteName}</Text>
-            <FlatList 
-                style={styles.list}
-                horizontal={true}
-                data={colorPalette.colors.slice(0, 5)}
-                keyExtractor={item => item.colorName}
-                renderItem={ ({ item }) => <View style={[styles.box, { backgroundColor: item.hexCode }]}></View>}
-            />
-        </TouchableOpacity>
+    
+            <TouchableOpacity onPress={handlePress}>
+                <Text style={styles.text}>{colorPalette.paletteName}</Text>
+                <FlatList 
+                    style={styles.list}
+                    horizontal={true}
+                    data={colorPalette.colors.slice(0, 5)}
+                    keyExtractor={item => item.colorName}
+                    renderItem={ ({ item }) => <View style={[styles.box, { backgroundColor: item.hexCode }]}></View>}
+                />
+            </TouchableOpacity>
     )
 
 }

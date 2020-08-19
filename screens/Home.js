@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { FlatList, StyleSheet, RefreshControl } from 'react-native';
+import { FlatList, StyleSheet, Text } from 'react-native';
 import PalettePreview from '../components/PalettePreview';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // Reformating we will put all of our color objects in Home, and pass them down
 // via Navigator's param-props
@@ -52,6 +53,8 @@ const Home = ({ navigation }) => {
             refreshing={isLoading}
             // Using refreshing and onRefresh props. onRefresh will call our callback hook loadFunc
             onRefresh={loadFunc}
+            // Below we add a ListHeaderComponent that will render a touchable section to birng up our Modal
+            ListHeaderComponent={<TouchableOpacity><Text>Launch Modal</Text></TouchableOpacity>}
             renderItem={ ({ item }) => (
 
             <PalettePreview
