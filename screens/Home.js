@@ -54,7 +54,11 @@ const Home = ({ navigation }) => {
             // Using refreshing and onRefresh props. onRefresh will call our callback hook loadFunc
             onRefresh={loadFunc}
             // Below we add a ListHeaderComponent that will render a touchable section to birng up our Modal
-            ListHeaderComponent={<TouchableOpacity><Text>Launch Modal</Text></TouchableOpacity>}
+            // In the onPress callback, utilize navigation.navigate prop from React Navigator
+            ListHeaderComponent={
+              <TouchableOpacity onPress={(() => { navigation.navigate('ColorPaletteModal') })} > 
+                <Text>Launch Modal</Text>
+              </TouchableOpacity>}
             renderItem={ ({ item }) => (
 
             <PalettePreview

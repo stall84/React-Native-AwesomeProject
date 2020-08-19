@@ -38,6 +38,7 @@ const App = () => {
           component={MainStackScreen}
           options={{ headerShown: false }}
         />
+        {/* Our Modal */}
         <RootStack.Screen 
           name="ColorPaletteModal"
           component={ColorPaletteModal}
